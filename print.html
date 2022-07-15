@@ -1820,9 +1820,13 @@ pub const UPDATE_PARTITION_ADDRESS: usize = 0x08080000;
 <p>Note: </p>
 <ul>
 <li>The corresponding public-key is embedded in the bootloader's source.</li>
-<li>In order to test this example, you'll have to install a couple of pre-requisites - probe-rs-cli, python3</li>
+<li>In order to test this example, you'll have to install a couple of pre-requisites  as it uses probe-run to flash the binary. </li>
 </ul>
 </blockquote>
+<pre><code class="language-powershell">cargo install probe-rs-cli 
+cargo install cargo-flash
+cargo install cargo-binutils
+</code></pre>
 <p>Here's the command line output that should be produced.</p>
 <pre><code class="language-Terminal">udayakumar@udayakumar-VirtualBox:~/devspace/rustBoot$ cargo stm32f746 build-sign-flash rustBoot 1234 1235
     Finished dev [unoptimized + debuginfo] target(s) in 0.04s
