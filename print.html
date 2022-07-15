@@ -1800,16 +1800,27 @@ pub const UPDATE_PARTITION_ADDRESS: usize = 0x08080000;
 <li>boot and update firmware</li>
 </ul>
 <p>sign both pieces of firmware with a (test) <a href="https://github.com/nihalpasham/rustBoot/tree/main/boards/rbSigner/keygen">private-key</a> and finally create valid <a href="usage/../arch/images.html#mcu-image-format"><code>rustBoot mcu-images</code></a> i.e. signed boot and update firmware images.</p>
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><code>ecc256.der</code> contains a public-key and a private-key, the first 32 bytes being the public-key and the rest being the private-key, used to sign the firmware. We are using it for testing purposes only.</li>
+</ul>
+</blockquote>
 <p>Compiling, signing and programming can be performed via a single command</p>
-<pre><code class="language-Terminal">cargo stm32f746 build-sign-flash rustBoot 1234 1235
+<pre><code class="language-Terminal">cargo stm32f746 build-sign-flash rustBoot [boot-ver] [updt-ver]
 </code></pre>
+<blockquote>
+<p>Note:</p>
+<ul>
+<li>The <code>updt-ver</code> number should be greater than <code>boot-ver</code>.</li>
+</ul>
+</blockquote>
 <p>This will build, sign and flash all 3 packages (i.e. bootloader + boot-fw + update-fw) onto the board.</p>
 <blockquote>
 <p>Note: </p>
 <ul>
 <li>The corresponding public-key is embedded in the bootloader's source.</li>
-<li>In order to test this example, you'll have to install a couple of pre-requisites - probe-rs-cli, python3 </li>
-<li>Owing to the above mentioned dependencies, the command only works in a linux environment or with WSL2 in a windows environment. </li>
+<li>In order to test this example, you'll have to install a couple of pre-requisites - probe-rs-cli, python3</li>
 </ul>
 </blockquote>
 <p>Here's the command line output that should be produced.</p>
